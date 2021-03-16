@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace TEST16032021CinsoleApp.Reader
 {
@@ -11,7 +10,7 @@ namespace TEST16032021CinsoleApp.Reader
 
 		public string GetString()
 		{
-			string value = String.Empty;
+			string value = string.Empty;
 			using (StreamReader streamReader = new StreamReader(_pathFolderTextFile)) value = streamReader.ReadToEnd();
 			return value;
 		}
