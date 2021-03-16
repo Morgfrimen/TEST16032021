@@ -10,7 +10,7 @@ namespace TEST16032021CinsoleApp.Reader
 
 		public string GetString()
 		{
-			string value = string.Empty;
+			string value;
 			using (StreamReader streamReader = new StreamReader(_pathFolderTextFile)) value = streamReader.ReadToEnd();
 			return value;
 		}
