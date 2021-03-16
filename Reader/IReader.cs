@@ -3,7 +3,7 @@
 
 	internal interface IReader
 	{
-		public string GetString();
+		internal string GetString();
 	}
 
 }

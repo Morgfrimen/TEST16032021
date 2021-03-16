@@ -8,7 +8,7 @@ namespace TEST16032021CinsoleApp.Reader
 		private readonly string _pathFolderTextFile;
 		internal ReaderFormatTxt(string pathFolderTextFile) => _pathFolderTextFile = pathFolderTextFile;
 
-		public string GetString()
+		string IReader.GetString()
 		{
 			string value;
 			using (StreamReader streamReader = new StreamReader(_pathFolderTextFile)) value = streamReader.ReadToEnd();
