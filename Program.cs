@@ -22,7 +22,7 @@ namespace TEST16032021ConsoleApp
 			EventBroker.EventBroker.PrintExceptionMessage += EventBroker_PrintExceptionMessage;
 		}
 
-		private static void EventBroker_PrintExceptionMessage(Exception obj,string tag)
+		private static void EventBroker_PrintExceptionMessage(Exception obj, string tag)
 		{
 			Console.WriteLine($"{tag}{Environment.NewLine}{obj.Message}");
 		}
@@ -30,7 +30,12 @@ namespace TEST16032021ConsoleApp
 		private static async Task Main(string[] args)
 		{
 			Stopwatch.Start();
+#if DEBUG
 			string patch = Path.Combine(Environment.CurrentDirectory, "Test2.txt");
+#else
+			Console.WriteLine("Введите путь к текстовому файлу:");
+			string patch = Console.ReadLine();
+#endif
 			IReader reader = new ReaderFormatTxt(patch);
 			IFilter filter = new FilterStandard(reader.GetString());
 			ILogical logical = new LogicalStandard();
