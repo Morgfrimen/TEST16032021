@@ -19,6 +19,12 @@ namespace TEST16032021ConsoleApp
 		{
 			Console.InputEncoding = Encoding.UTF8;
 			Console.OutputEncoding = Encoding.UTF8;
+			EventBroker.EventBroker.PrintExceptionMessage += EventBroker_PrintExceptionMessage;
+		}
+
+		private static void EventBroker_PrintExceptionMessage(Exception obj,string tag)
+		{
+			Console.WriteLine($"{tag}{Environment.NewLine}{obj.Message}");
 		}
 
 		private static async Task Main(string[] args)

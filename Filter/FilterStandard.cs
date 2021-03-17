@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace TEST16032021ConsoleApp.Filter
@@ -13,15 +14,23 @@ namespace TEST16032021ConsoleApp.Filter
 
 		string[] IFilter.GetStringArray()
 		{
-			Regex regex = new Regex(DefaultPattern, RegexOptions.Compiled & RegexOptions.CultureInvariant);
-			MatchCollection matchCollection = regex.Matches(_defaultStringValue);
-			List<string> result = new List<string>();
-			foreach (Match match in matchCollection)
+			try
 			{
-				result.Add(match.Groups[1].Value);
-			}
+				Regex regex = new Regex(DefaultPattern, RegexOptions.Compiled & RegexOptions.CultureInvariant);
+				MatchCollection matchCollection = regex.Matches(_defaultStringValue);
+				List<string> result = new List<string>();
+				foreach (Match match in matchCollection)
+				{
+					result.Add(match.Groups[1].Value);
+				}
 
-			return result.ToArray();
+				return result.ToArray();
+			}
+			catch (Exception exception)
+			{
+				EventBroker.EventBroker.ExceptionThrow(exception,nameof(FilterStandard));
+				return null;
+			}
 		}
 	}
 

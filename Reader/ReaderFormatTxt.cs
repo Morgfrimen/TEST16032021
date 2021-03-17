@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace TEST16032021ConsoleApp.Reader
 {
@@ -10,8 +11,15 @@ namespace TEST16032021ConsoleApp.Reader
 
 		string IReader.GetString()
 		{
-			string value;
-			using (StreamReader streamReader = new StreamReader(_pathFolderTextFile)) value = streamReader.ReadToEnd();
+			string value = default;
+			try
+			{
+				using (StreamReader streamReader = new StreamReader(_pathFolderTextFile)) value = streamReader.ReadToEnd();
+			}
+			catch (Exception exception)
+			{
+				EventBroker.EventBroker.ExceptionThrow(exception, nameof(ReaderFormatTxt));
+			}
 			return value;
 		}
 	}
