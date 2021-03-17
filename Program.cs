@@ -17,14 +17,16 @@ namespace TEST16032021ConsoleApp
 
 		static Program()
 		{
-			Console.InputEncoding = Encoding.UTF8;
-			Console.OutputEncoding = Encoding.UTF8;
+			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+			Console.InputEncoding = Encoding.GetEncoding(1251);
+			Console.OutputEncoding = Encoding.GetEncoding(1251);
 			EventBroker.EventBroker.PrintExceptionMessage += EventBroker_PrintExceptionMessage;
 		}
 
 		private static void EventBroker_PrintExceptionMessage(Exception obj, string tag)
 		{
 			Console.WriteLine($"{tag}{Environment.NewLine}{obj.Message}");
+			Console.ReadKey();
 		}
 
 		private static async Task Main(string[] args)
@@ -46,9 +48,18 @@ namespace TEST16032021ConsoleApp
 
 		private static void PrintResult(LogicalStandard.Node[] nodes, Stopwatch stopwatch)
 		{
-			foreach (LogicalStandard.Node node in nodes) Console.Write($"{node.Value}, ");
+			try
+			{
+				foreach (LogicalStandard.Node node in nodes) Console.Write($"{node.Value}, ");
+			}
+			catch (Exception exception)
+			{
+				EventBroker.EventBroker.ExceptionThrow(exception, nameof(Program));
+			}
 			stopwatch.Stop();
 			Console.WriteLine(Environment.NewLine + $"Время: {stopwatch.Elapsed:g}");
+			Console.WriteLine("Нажмите любую кнопку для закрытия приложения");
+			Console.ReadKey();
 		}
 	}
 
