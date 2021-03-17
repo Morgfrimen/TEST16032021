@@ -40,14 +40,7 @@ namespace TEST16032021ConsoleApp
 			IFilter filter = new FilterStandard(reader.GetString());
 			ILogical logical = new LogicalStandard();
 			LogicalStandard.Node[] res = default;
-			try
-			{
-				res = await logical.GetResultValueAsync(filter.GetStringArray());
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-			}
+			res = await logical.GetResultValueAsync(filter.GetStringArray());
 			PrintResult(res, Stopwatch);
 		}
 
