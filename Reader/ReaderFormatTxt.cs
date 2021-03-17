@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace TEST16032021CinsoleApp.Reader
+namespace TEST16032021ConsoleApp.Reader
 {
 
 	internal sealed class ReaderFormatTxt : IReader

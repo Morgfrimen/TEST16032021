@@ -1,4 +1,4 @@
-﻿namespace TEST16032021CinsoleApp.Reader
+﻿namespace TEST16032021ConsoleApp.Reader
 {
 
 	internal interface IReader
