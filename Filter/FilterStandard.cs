@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace TEST16032021ConsoleApp.Filter
@@ -11,7 +10,6 @@ namespace TEST16032021ConsoleApp.Filter
 		private readonly string _defaultStringValue;
 
 		internal FilterStandard(string stringValue) => _defaultStringValue = stringValue;
-		string IFilter.DefaultStringValue => _defaultStringValue;
 
 		string[] IFilter.GetStringArray()
 		{

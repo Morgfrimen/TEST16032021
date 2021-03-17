@@ -13,30 +13,36 @@ namespace TEST16032021ConsoleApp
 
 	internal class Program
 	{
+		private static readonly Stopwatch Stopwatch = new Stopwatch();
+
 		static Program()
 		{
 			Console.InputEncoding = Encoding.UTF8;
 			Console.OutputEncoding = Encoding.UTF8;
 		}
+
 		private static async Task Main(string[] args)
 		{
-			Stopwatch stopwatch = new Stopwatch();
-			stopwatch.Start();
-			IReader reader = new ReaderFormatTxt(Path.Combine(Environment.CurrentDirectory, "Test2.txt"));
+			Stopwatch.Start();
+			string patch = Path.Combine(Environment.CurrentDirectory, "Test2.txt");
+			IReader reader = new ReaderFormatTxt(patch);
 			IFilter filter = new FilterStandard(reader.GetString());
-			string[] result = filter.GetStringArray();
 			ILogical logical = new LogicalStandard();
-			var res = await logical.GetResultValueAsync(result);
-			PrintResult(res, stopwatch);
+			LogicalStandard.Node[] res = default;
+			try
+			{
+				res = await logical.GetResultValueAsync(filter.GetStringArray());
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+			PrintResult(res, Stopwatch);
 		}
 
 		private static void PrintResult(LogicalStandard.Node[] nodes, Stopwatch stopwatch)
 		{
-			foreach (LogicalStandard.Node node in nodes)
-			{
-				Console.Write($"{node.value}, ");
-			}
-
+			foreach (LogicalStandard.Node node in nodes) Console.Write($"{node.Value}, ");
 			stopwatch.Stop();
 			Console.WriteLine(Environment.NewLine + $"Время: {stopwatch.Elapsed:g}");
 		}
