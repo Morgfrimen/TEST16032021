@@ -19,16 +19,12 @@ namespace TEST16032021ConsoleApp.Filter
 				Regex regex = new Regex(DefaultPattern, RegexOptions.Compiled & RegexOptions.CultureInvariant);
 				MatchCollection matchCollection = regex.Matches(_defaultStringValue);
 				List<string> result = new List<string>();
-				foreach (Match match in matchCollection)
-				{
-					result.Add(match.Groups[1].Value);
-				}
-
+				foreach (Match match in matchCollection) result.Add(match.Groups[1].Value);
 				return result.ToArray();
 			}
 			catch (Exception exception)
 			{
-				EventBroker.EventBroker.ExceptionThrow(exception,nameof(FilterStandard));
+				EventBroker.EventBroker.ExceptionThrow(exception, nameof(FilterStandard));
 				return null;
 			}
 		}

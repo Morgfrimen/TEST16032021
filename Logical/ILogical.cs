@@ -3,9 +3,9 @@
 namespace TEST16032021ConsoleApp.Logical
 {
 
-	internal interface ILogical
+	internal interface ILogical<T> where T : class
 	{
-		internal Task<LogicalStandard.Node[]> GetResultValueAsync(string[] value);
+		internal Task<T[]> GetResultValueAsync(string[] value);
 	}
 
 }

@@ -3,31 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using TEST16032021ConsoleApp.Logical.Models;
+
 namespace TEST16032021ConsoleApp.Logical
 {
 
-	internal sealed class LogicalStandard : ILogical
+	internal sealed class LogicalStandard : ILogical<Node>
 	{
 		private const int MaxResultPrint = 10;
-
-		internal class Node
-		{
-			internal Node(int count, string value)
-			{
-				this.Count = count;
-				this.Value = value;
-			}
-
-			internal readonly int Count;
-			internal readonly string Value;
-		}
-
-		Task<Node[]> ILogical.GetResultValueAsync(string[] value)
-		{
-			Task<Node[]> resultTask = new Task<Node[]>(() => GetNodes(value));
-			resultTask.Start();
-			return resultTask;
-		}
 
 		private Node[] GetNodes(string[] value)
 		{
@@ -46,6 +29,13 @@ namespace TEST16032021ConsoleApp.Logical
 				EventBroker.EventBroker.ExceptionThrow(exception, nameof(LogicalStandard));
 				return null;
 			}
+		}
+
+		Task<Node[]> ILogical<Node>.GetResultValueAsync(string[] value)
+		{
+			Task<Node[]> resultTask = new Task<Node[]>(() => GetNodes(value));
+			resultTask.Start();
+			return resultTask;
 		}
 	}
 

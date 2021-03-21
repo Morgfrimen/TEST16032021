@@ -7,16 +7,16 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <ErrorReport>none</ErrorReport>
-	  <FileAlignment>1024</FileAlignment>
-	  <DebugType>none</DebugType>
-	  <DebugSymbols>false</DebugSymbols>
+		<ErrorReport>none</ErrorReport>
+		<FileAlignment>1024</FileAlignment>
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="publish\**" />
-	  <EmbeddedResource Remove="publish\**" />
-	  <None Remove="publish\**" />
+		<Compile Remove="publish\**" />
+		<EmbeddedResource Remove="publish\**" />
+		<None Remove="publish\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -26,12 +26,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Test.txt">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Test2.txt">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<None Update="Test.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Test2.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>

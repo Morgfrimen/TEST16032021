@@ -3,6 +3,7 @@
 
 	internal interface IReader
 	{
+		internal string[] CountStr { get; }
 		internal string GetString();
 	}
 
